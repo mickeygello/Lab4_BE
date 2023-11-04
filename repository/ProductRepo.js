@@ -14,6 +14,10 @@ async function getProductById(id){
     return product
 }
 
+async function deleteProductById(id){
+    await Product.findByIdAndDelete(id)
+}
+
 async function createProduct({ name, price, images = [], category }) {
     try {
         return await Category.findOne({ name: category }).then(docCategory => {
@@ -75,6 +79,7 @@ export default{
     getAllProduct,
     getProductById,
     createProduct,
+    deleteProductById,
     addComment,
     getAllComments
 }

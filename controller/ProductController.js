@@ -43,6 +43,20 @@ async function createProduct(req, res) {
     }
 }
 
+async function deleteProductById(req, res) {
+    try {
+        await productRepository.deleteProductById(req.params.id);
+        res.status(200).json({
+            message: "delete product successfully"
+        })
+    } catch (error) {
+        res.status(500).json({
+            message: error.toString()
+        })
+    }
+}
+
+
 async function addComment(req, res) {
     try {
         const { id } = req.params;
@@ -84,6 +98,7 @@ export default {
     getAllProduct,
     getProductById,
     createProduct,
+    deleteProductById,
     getAllComments,
     addComment
 }
